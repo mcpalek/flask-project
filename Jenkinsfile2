@@ -24,8 +24,10 @@ stages {
             eval $(aws ecr get-login --region "$AWS_REGION" --no-include-email)
             # Enable Debug and Exit immediately 
             set -xe
+            
             docker build -t flask .
             #two push one for master tag other is git commit ID
+            sh "\$(aws ecr get-login)"
             docker tag flask:latest 643162619216.dkr.ecr.eu-central-1.amazonaws.com/flask:latest
             docker push 643162619216.dkr.ecr.eu-central-1.amazonaws.com/flask:latest
          '''.stripIndent())
