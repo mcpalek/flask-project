@@ -12,6 +12,7 @@ ENV PYTHONUNBUFFERED=1
 # Install pip requirements
 # COPY requirements.txt .
 # RUN python -m pip install -r requirements.txt
+RUN pip3 freeze requirements.txt .
 COPY requirements.txt . /usr/src/app/
 RUN pip3 install --no-cache-dir -r /usr/src/app/requirements.txt
 
