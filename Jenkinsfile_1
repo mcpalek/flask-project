@@ -23,9 +23,9 @@ pipeline {
 
 // steps
 def buildApp() {
-	 {
+	 
 		def appImage = docker.build("643162619216.dkr.ecr.eu-central-1.amazonaws.com/my_ecr_repository/myapp:${BUILD_NUMBER}")
-	}
+	
 }
 
 def deploy(environment) {
