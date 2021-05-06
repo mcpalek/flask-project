@@ -28,7 +28,7 @@ stages {
             docker build -t project2 .
             #two push one for master tag other is git commit ID
             
-            docker tag flask:latest 643162619216.dkr.ecr.eu-central-1.amazonaws.com/project2:latest
+            docker tag project2:latest 643162619216.dkr.ecr.eu-central-1.amazonaws.com/project2:latest
             aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 643162619216.dkr.ecr.eu-central-1.amazonaws.com
             docker push 643162619216.dkr.ecr.eu-central-1.amazonaws.com/project2:latest
          '''.stripIndent())
