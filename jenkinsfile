@@ -36,7 +36,7 @@ stages {
 
           
     //slackSend (channel: '#allerts', message: 'hello there', color: '#3eb991')
-          slackSend (channel: '#allerts', message:'*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${env.BUILD_USER}\n More info at: ${env.BUILD_URL}')
+          slackSend (channel: '#allerts', message:"*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${env.BUILD_USER}\n More info at: ${env.BUILD_URL}")
       }
     }
 }
