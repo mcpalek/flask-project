@@ -32,8 +32,19 @@ stages {
             aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 643162619216.dkr.ecr.eu-central-1.amazonaws.com
             docker push 643162619216.dkr.ecr.eu-central-1.amazonaws.com/project2:latest
          '''.stripIndent())
-          def slackResponse = slackSend(channel:"allerts" , message:"this is the primary message")
-          slackSend(channel:slackResponse.channel.Id,message:"Build:${env.JOB_NAME} Completed without a problem ${env.BUILD_URL}",timestamp:slackResponse.ts)
+
+          def COLOR_MAP = [
+                 'SUCCESS': 'good', 
+                 'FAILURE': 'danger',
+                 ]
+          def getBuildUser() {
+              return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+              }
+              echo 'I will always say hello in the console.'
+            slackSend channel: '#allert',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
+          
       }
     }
 }
