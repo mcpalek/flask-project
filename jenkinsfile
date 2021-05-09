@@ -33,7 +33,8 @@ stages {
             docker push 643162619216.dkr.ecr.eu-central-1.amazonaws.com/project2:latest
          '''.stripIndent())
 
-
+        slackSend channel: '#allerts', 
+                          message: 'Poruka sa Jenkins servera'
       }
     }
 }
