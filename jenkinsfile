@@ -1,3 +1,11 @@
+ def COLOR_MAP = [
+                 'SUCCESS': 'good', 
+                 'FAILURE': 'danger',
+                 ]
+          def getBuildUser() {
+              return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+              }
+
 pipeline {
   agent any
      environment {
@@ -33,13 +41,7 @@ stages {
             docker push 643162619216.dkr.ecr.eu-central-1.amazonaws.com/project2:latest
          '''.stripIndent())
 
-          def COLOR_MAP = [
-                 'SUCCESS': 'good', 
-                 'FAILURE': 'danger',
-                 ]
-          def getBuildUser() {
-              return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-              }
+         
               echo 'I will always say hello in the console.'
             slackSend channel: '#allert',
                 color: COLOR_MAP[currentBuild.currentResult],
