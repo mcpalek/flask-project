@@ -34,8 +34,8 @@ stages {
             docker push 643162619216.dkr.ecr.eu-central-1.amazonaws.com/project2:latest
          '''.stripIndent())
 
-         WithCredentials([string(credentialsId: 'theSlackToken', variable: 'slackCredentials')]) 
-    slackSend (channel: '#allerts', message: 'hello there', color: '#3eb991', failOnError: true, token: slackCredentials)
+          
+    slackSend (channel: '#allerts', message: 'hello there', color: '#3eb991')
           
       }
     }
